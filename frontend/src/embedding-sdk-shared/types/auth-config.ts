@@ -68,6 +68,16 @@ export type MetabaseIsGuestAuthConfig = BaseMetabaseAuthConfig & {
   isGuest: true;
 
   /**
+   * Function to get guest embed JWT tokens (iframe only, not applicable for SDK's guest mode).
+   * Supports both token refresh on expiry and initial token fetch when no static token is provided.
+   * In both cases, this works with guest embed components (metabase-dashboard and metabase-question).
+   * It has precedence over guestEmbedProviderUri
+   * 
+   * NOTE: this just uses `MetabaseFetchRequestTokenFn` a stub type
+   */
+  guestEmbedProvider?: MetabaseFetchRequestTokenFn;
+
+  /**
    * URL endpoint for fetching and refreshing guest embed JWT tokens (iframe only, not applicable for SDK's guest mode).
    * Supports both token refresh on expiry and initial token fetch when no static token is provided.
    * In both cases, this works with guest embed components (metabase-dashboard and metabase-question).

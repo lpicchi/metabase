@@ -51,7 +51,11 @@ export const refreshGuestSession = createAsyncThunk(
     // write the refreshed token back to the same guestTokensByMount key.
     mountId: string;
   }): Promise<string> => {
-    if (authConfig.isGuest && !authConfig.guestEmbedProviderUri) {
+    if (
+      authConfig.isGuest &&
+      !authConfig.guestEmbedProviderUri &&
+      !authConfig.guestEmbedProvider
+    ) {
       throw new Error(
         "guestEmbedProviderUri is required to refresh the guest embed token",
       );
